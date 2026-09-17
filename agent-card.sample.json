@@ -1,0 +1,424 @@
+{
+  "protocolVersion": "0.3.0",
+  "kind": "agent-card",
+  "name": "A2A Peptides",
+  "description": "A2A Peptides is the cleared-commerce hub for the peptide industry, operated by GreenCore Solutions Corp. (GSC). It is a jurisdiction-and-pathway gate that only exposes items cleared to transact, with a catalogue behind it that only holds what passed. Every answer comes from a register page, carries its source and its rule-set version, and is signed. Agents reach it over the Model Context Protocol (MCP) and Agent-to-Agent (A2A); settlement is x402 after the gate. Research-use stock is a reject class the door names and refuses. No research and development happens here.",
+  "url": "https://a2a-peptides.ai/",
+  "version": "0.1.2",
+  "documentationUrl": "https://a2a-peptides.ai/docs",
+  "iconUrl": "https://a2a-peptides.ai/icon-512.png",
+  "provider": {
+    "organization": "GreenCore Solutions Corp.",
+    "url": "https://gsc-em.com"
+  },
+  "operator": {
+    "name": "GreenCore Solutions Corp.",
+    "url": "https://a2a-peptides.ai",
+    "contact": "mailto:mcp@a2a-peptides.ai",
+    "keyring": "https://a2a-peptides.ai/.well-known/jwks.json",
+    "kid": "a2ap-2026-09"
+  },
+  "contact": "mailto:mcp@a2a-peptides.ai",
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false,
+    "stateTransitionHistory": false
+  },
+  "securitySchemes": {
+    "none": {
+      "type": "noAuth",
+      "description": "reads need no authentication"
+    },
+    "credential": {
+      "type": "http",
+      "scheme": "bearer",
+      "description": "an agent that transacts presents a credential issued to a licensed party; none returns DENY_UNLICENSED_AGENT"
+    },
+    "x402": {
+      "type": "http",
+      "scheme": "x402",
+      "description": "registry-truth tools metered and order intents settled in USDC on Base; receipts signed with reason_code and rule_set_version"
+    }
+  },
+  "security": [
+    {
+      "none": []
+    }
+  ],
+  "defaultInputModes": [
+    "application/json",
+    "text/plain"
+  ],
+  "defaultOutputModes": [
+    "application/json",
+    "text/markdown"
+  ],
+  "supportedInterfaces": [
+    {
+      "url": "https://mcp.a2a-peptides.ai/mcp",
+      "protocolBinding": "HTTP+JSON",
+      "transport": "streamable-http",
+      "protocolVersion": "2025-06-18",
+      "description": "MCP door — server a2a-peptides, twenty tools at v1.0"
+    },
+    {
+      "url": "https://a2a-peptides.ai/",
+      "protocolBinding": "HTTP+JSON",
+      "transport": "HTTP+JSON",
+      "protocolVersion": "1.0",
+      "description": "the page, its Markdown twin and the kit"
+    }
+  ],
+  "skills": [
+    {
+      "id": "peptides.resolve_jurisdiction",
+      "name": "resolve jurisdiction",
+      "description": "Resolve the ship-to and the actor's jurisdiction to one of US, CA, MX, EU (member as parameter) or GB.",
+      "tags": [
+        "gate",
+        "peptides"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "peptides.resolve_actor",
+      "name": "resolve actor",
+      "description": "Resolve the actor class: patient, prescriber, pharmacy or 503B, wholesaler, cosmetic brand, retailer, or agent (an agent must present a credential).",
+      "tags": [
+        "gate",
+        "peptides"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "peptides.gate_transaction",
+      "name": "gate transaction",
+      "description": "Return allow, deny or require_rx for a substance or presentation, actor class, channel and ship-to, with the reason code and the rule-set version.",
+      "tags": [
+        "gate",
+        "peptides"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "peptides.get_substance_record",
+      "name": "get substance record",
+      "description": "One molecule: identifiers, sourced aliases, class, pathway rows per jurisdiction, enforcement events, safety references.",
+      "tags": [
+        "regulatory-truth",
+        "peptides"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "peptides.get_pathway_status",
+      "name": "get pathway status",
+      "description": "The status of a substance on one pathway in one jurisdiction, with effective date, rule-set version and source page.",
+      "tags": [
+        "regulatory-truth",
+        "peptides"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "peptides.get_compounding_eligibility",
+      "name": "get compounding eligibility",
+      "description": "Whether a substance may be lawfully compounded in a jurisdiction, and under which list or standard.",
+      "tags": [
+        "regulatory-truth",
+        "peptides"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "peptides.get_label_and_indication",
+      "name": "get label and indication",
+      "description": "Label and indication for a licensed presentation only.",
+      "tags": [
+        "regulatory-truth",
+        "peptides"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "peptides.get_enforcement_watch",
+      "name": "get enforcement watch",
+      "description": "Dated enforcement events: warning letters, import alerts, shortage-list changes, committee votes, seizures, state notices.",
+      "tags": [
+        "regulatory-truth",
+        "peptides"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "peptides.search_cleared_items",
+      "name": "search cleared items",
+      "description": "Search presentations that passed the gate for a jurisdiction, pathway and actor class.",
+      "tags": [
+        "cleared-catalogue",
+        "peptides"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "peptides.get_item",
+      "name": "get item",
+      "description": "One authorised presentation: brand, strength, form, route, device, pack, holder, status, offers.",
+      "tags": [
+        "cleared-catalogue",
+        "peptides"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "peptides.compare_presentations",
+      "name": "compare presentations",
+      "description": "Compare two or more authorised presentations side by side.",
+      "tags": [
+        "cleared-catalogue",
+        "peptides"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "peptides.find_licensed_supplier",
+      "name": "find licensed supplier",
+      "description": "Licensed parties for a presentation in a jurisdiction; tenant as a parameter.",
+      "tags": [
+        "licensed-supply",
+        "peptides"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "peptides.get_availability",
+      "name": "get availability",
+      "description": "Availability of a presentation from a licensed party, after the gate.",
+      "tags": [
+        "licensed-supply",
+        "peptides"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "peptides.get_price",
+      "name": "get price",
+      "description": "Price basis (list, contract or reimbursement) from a licensed party, after the gate.",
+      "tags": [
+        "licensed-supply",
+        "peptides"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "peptides.get_lot_coa",
+      "name": "get lot coa",
+      "description": "Certificate of analysis for a lawful lot where the pathway permits.",
+      "tags": [
+        "quality",
+        "peptides"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "peptides.verify_serialization",
+      "name": "verify serialization",
+      "description": "Verify a serialised pack against the serialisation regime of the jurisdiction.",
+      "tags": [
+        "quality",
+        "peptides"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "peptides.create_order_intent",
+      "name": "create order intent",
+      "description": "Create an order intent for a cleared item; the intent carries the reason code and the rule-set version, and settles by x402.",
+      "tags": [
+        "commerce",
+        "peptides"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "peptides.a2a_handoff",
+      "name": "a2a handoff",
+      "description": "Hand the order intent to the licensed counterparty's agent over Agent-to-Agent (A2A).",
+      "tags": [
+        "commerce",
+        "peptides"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "peptides.get_safety_label",
+      "name": "get safety label",
+      "description": "Safety label pointers for licensed products.",
+      "tags": [
+        "operations",
+        "peptides"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "peptides.log_audit",
+      "name": "log audit",
+      "description": "Write the audit line for a gate decision or an order intent.",
+      "tags": [
+        "operations",
+        "peptides"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ]
+    }
+  ],
+  "refusals": [
+    {
+      "reason_code": "DENY_RUO",
+      "description": "research-use stock is a reject class; no commerce tool touches it"
+    },
+    {
+      "reason_code": "DENY_UNLICENSED_AGENT",
+      "description": "an agent without a credential issued to a licensed party"
+    },
+    {
+      "reason_code": "DENY_PATHWAY_NOT_CLEARED",
+      "description": "the substance has no cleared pathway in the jurisdiction"
+    },
+    {
+      "reason_code": "DENY_STATE_OVERLAY",
+      "description": "a state or provincial overlay tightens the federal pass"
+    },
+    {
+      "reason_code": "DENY_CONTROLLED",
+      "description": "a controlled substance in the jurisdiction"
+    },
+    {
+      "reason_code": "DENY_CROSS_BORDER",
+      "description": "the ship-to is outside the licensed party's jurisdiction"
+    }
+  ],
+  "jurisdictions": [
+    "US",
+    "CA",
+    "MX",
+    "EU",
+    "GB"
+  ],
+  "registry": {
+    "namespace": "io.github.a2a-peptides",
+    "server": "a2a-peptides"
+  },
+  "family": {
+    "hub": "https://a2a-peptides.ai",
+    "registry": "https://peptides-registry.ai",
+    "x402": "https://peptides-x402.ai",
+    "showcase": "https://peptides-usa.ai"
+  },
+  "asOf": "2026-09-17",
+  "signatures": [
+    {
+      "protected": "eyJhbGciOiJFUzI1NiIsImtpZCI6ImEyYXAtMjAyNi0wOSJ9",
+      "signature": "cKAEZlNuxMfMBEbcsjB-1MIksssbiomAe9YnAA9hbIsEp5FO97DSlZIMHv0sBH1DgqVTYjFTE-FkM5V6XkeyUg"
+    }
+  ]
+}

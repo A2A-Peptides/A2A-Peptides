@@ -1,0 +1,44 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.a2a-peptides/a2a-peptides",
+  "title": "A2A Peptides",
+  "description": "Cleared-commerce hub for the peptide industry: jurisdiction-and-pathway gate, cleared catalogue, licensed supply, x402 settlement.",
+  "version": "1.0.0",
+  "websiteUrl": "https://a2a-peptides.ai",
+  "repository": {
+    "url": "https://github.com/A2A-Peptides/A2A-Peptides",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.a2a-peptides.ai/mcp"
+    }
+  ],
+  "icons": [
+    {
+      "src": "https://a2a-peptides.ai/icon.svg",
+      "mimeType": "image/svg+xml",
+      "sizes": [
+        "any"
+      ],
+      "theme": "light"
+    },
+    {
+      "src": "https://a2a-peptides.ai/icon-512.png",
+      "mimeType": "image/png",
+      "sizes": [
+        "512x512"
+      ],
+      "theme": "light"
+    },
+    {
+      "src": "https://a2a-peptides.ai/icon-512-dark.png",
+      "mimeType": "image/png",
+      "sizes": [
+        "512x512"
+      ],
+      "theme": "dark"
+    }
+  ]
+}
