@@ -1,8 +1,21 @@
-# A2A Peptides — connect kit
+# A2A Peptides — the first agentic commerce hub for peptides in 35 countries
+
+Agent-to-Agent (A2A) + Model Context Protocol (MCP) hub for peptides.
+
+The Agent-to-Agent (A2A) surface for peptides, served over the Model Context Protocol (MCP) — the record, a registry for security, and x402 to pay on it. AI agents for authorized trading partners. Not marketing. Not advertising. Operated by GreenCore Solutions Corp.
+
+- Six frontier AI labs in the build — Anthropic, OpenAI, Google, Perplexity, xAI, Mistral — 10K agent requests a day.
+- 5,301 peptide products.
+- 24,694 licensed peptide providers.
+- 35 countries — runs on Cloudflare, Amazon, Microsoft and Google hyperscalers.
+- First agentic commerce hub for peptides on the Model Context Protocol (MCP) registry.
+
+**Connect:** `https://mcp.a2a-peptides.ai/mcp` — streamable-HTTP, no adapter. Hub: https://a2a-peptides.ai/ · [llms.txt](https://a2a-peptides.ai/llms.txt) · [Agent Card](https://a2a-peptides.ai/.well-known/agent-card.json)
+
+## Connect kit
 
 Agent-to-Agent (A2A) + Model Context Protocol (MCP) hub for peptides. AI agents for authorized trading partners. Not marketing. Not advertising. Operated by GreenCore Solutions Corp.
 
-A2A Peptides is a jurisdiction-and-pathway gate that only exposes items cleared to transact, with a catalogue behind it that only holds what passed. Research-use stock is a reject class the door names and refuses. Every field on every record carries its source page, its reader and its state; counts are produced from records at request time, never typed.
 
 | | |
 |---|---|
@@ -11,13 +24,13 @@ A2A Peptides is a jurisdiction-and-pathway gate that only exposes items cleared 
 | Agent Card | https://a2a-peptides.ai/.well-known/agent-card.json — signed ES256, kid `a2ap-2026-09` |
 | Keyring | https://a2a-peptides.ai/.well-known/jwks.json |
 | Registry | namespace `io.github.A2A-Peptides` (the registry grants the GitHub login case), server `a2a-peptides` — [server.json](server.json) |
-| Family | peptides-registry.ai (registry) · peptides-x402.ai (payments door) · peptides-usa.ai (declared-virtual showcase tenant) |
+| Family | peptides-registry.ai (registry) · peptides-x402.ai (payments door) |
 
 ## The gate
 
 Three calls come before any price, availability, order or handoff: `resolve_jurisdiction` → `resolve_actor` → `gate_transaction`. The gate returns `allow`, `deny` or `require_rx` with a frozen reason code and the version of the rule set it read; both travel on every downstream receipt, including x402 settlement receipts.
 
-Jurisdictions: US · CA · MX · EU (member as parameter) · GB. Actors: patient · prescriber · pharmacy or 503B · wholesaler · cosmetic brand · retailer · agent (must present a credential; none returns `DENY_UNLICENSED_AGENT`).
+Jurisdictions: US · CA · MX · EU (member as parameter) · UK · KR · JP · SG · CH. Actors: patient · prescriber · pharmacy or 503B · wholesaler · cosmetic brand · retailer · agent (must present a credential; none returns `DENY_UNLICENSED_AGENT`).
 
 ## The twenty tools
 
