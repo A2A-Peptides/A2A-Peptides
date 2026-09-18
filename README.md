@@ -10,7 +10,7 @@ A2A Peptides is a jurisdiction-and-pathway gate that only exposes items cleared 
 | MCP door of record | `https://mcp.a2a-peptides.ai/mcp` — streamable-HTTP, stateless, server name `a2a-peptides`, twenty tools at v1.0 |
 | Agent Card | https://a2a-peptides.ai/.well-known/agent-card.json — signed ES256, kid `a2ap-2026-09` |
 | Keyring | https://a2a-peptides.ai/.well-known/jwks.json |
-| Registry | namespace `io.github.a2a-peptides`, server `a2a-peptides` — [server.json](server.json) |
+| Registry | namespace `io.github.A2A-Peptides` (the registry grants the GitHub login case), server `a2a-peptides` — [server.json](server.json) |
 | Family | peptides-registry.ai (registry) · peptides-x402.ai (payments door) · peptides-usa.ai (declared-virtual showcase tenant) |
 
 ## The gate
