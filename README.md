@@ -1,6 +1,6 @@
 # A2A Peptides — connect kit
 
-The agentic hub for the peptide industry — Agent-to-Agent (A2A) and Model Context Protocol (MCP), on cleared rails. Operated by GreenCore Solutions Corp.
+Agent-to-Agent (A2A) + Model Context Protocol (MCP) hub for peptides. AI agents for authorized trading partners. Not marketing. Not advertising. Operated by GreenCore Solutions Corp.
 
 A2A Peptides is a jurisdiction-and-pathway gate that only exposes items cleared to transact, with a catalogue behind it that only holds what passed. Research-use stock is a reject class the door names and refuses. Every field on every record carries its source page, its reader and its state; counts are produced from records at request time, never typed.
 

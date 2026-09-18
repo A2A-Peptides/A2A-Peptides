@@ -2,7 +2,7 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.A2A-Peptides/a2a-peptides",
   "title": "A2A Peptides",
-  "description": "Cleared-commerce hub for the peptide industry: gate, cleared catalogue, licensed supply, x402.",
+  "description": "Agent-to-Agent (A2A) + Model Context Protocol (MCP) hub for peptides.",
   "version": "1.0.1",
   "websiteUrl": "https://a2a-peptides.ai",
   "repository": {
