@@ -2,9 +2,26 @@
   "protocolVersion": "0.3.0",
   "kind": "agent-card",
   "name": "A2A Peptides",
-  "description": "A2A Peptides is the cleared-commerce hub for the peptide industry, operated by GreenCore Solutions Corp. (GSC). It is a jurisdiction-and-pathway gate that only exposes items cleared to transact, with a catalogue behind it that only holds what passed. Every answer comes from a register page, carries its source and its rule-set version, and is signed. Agents reach it over the Model Context Protocol (MCP) and Agent-to-Agent (A2A); settlement is x402 after the gate. Research-use stock is a reject class the door names and refuses. No research and development happens here.",
-  "url": "https://a2a-peptides.ai/",
-  "version": "0.1.2",
+  "description": "Agent-to-Agent (A2A) + Model Context Protocol (MCP) hub for peptides.",
+  "positioning": "A2A Peptides is a B2B agentic toolset for the parties authorized to handle those products.",
+  "brief": "AI agents for authorized trading partners. Not marketing. Not advertising.",
+  "notice": "Artificial intelligence makes mistakes. A2A Peptides is an information source, not a recommendation. Rules differ by jurisdiction — refer to the regulator in your jurisdiction for the information that applies to you.",
+  "regulators": {
+    "FDA (United States)": "https://www.fda.gov/",
+    "Health Canada": "https://www.canada.ca/en/health-canada.html",
+    "COFEPRIS (Mexico)": "https://www.gob.mx/cofepris",
+    "EMA (European Union)": "https://www.ema.europa.eu/",
+    "MHRA (UK)": "https://www.gov.uk/government/organisations/medicines-and-healthcare-products-regulatory-agency",
+    "MFDS (Korea)": "https://www.mfds.go.kr/",
+    "PMDA (Japan)": "https://www.pmda.go.jp/",
+    "HSA (Singapore)": "https://www.hsa.gov.sg/",
+    "Swissmedic (Switzerland)": "https://www.swissmedic.ch/"
+  },
+  "url": "https://a2a-peptides.ai/a2a",
+  "version": "1.6.5",
+  "surface_version": "1.0.0",
+  "door_version": "1.6.5",
+  "tools": 20,
   "documentationUrl": "https://a2a-peptides.ai/docs",
   "iconUrl": "https://a2a-peptides.ai/icon-512.png",
   "provider": {
@@ -25,14 +42,10 @@
     "stateTransitionHistory": false
   },
   "securitySchemes": {
-    "none": {
-      "type": "noAuth",
-      "description": "reads need no authentication"
-    },
     "credential": {
       "type": "http",
       "scheme": "bearer",
-      "description": "an agent that transacts presents a credential issued to a licensed party; none returns DENY_UNLICENSED_AGENT"
+      "description": "client-credentials Bearer from https://peptides-registry.ai (register at /oauth/register); reads need no authentication; none returns DENY_UNLICENSED_AGENT on the transacting tools"
     },
     "x402": {
       "type": "http",
@@ -40,11 +53,7 @@
       "description": "registry-truth tools metered and order intents settled in USDC on Base; receipts signed with reason_code and rule_set_version"
     }
   },
-  "security": [
-    {
-      "none": []
-    }
-  ],
+  "security": [],
   "defaultInputModes": [
     "application/json",
     "text/plain"
@@ -53,13 +62,30 @@
     "application/json",
     "text/markdown"
   ],
+  "preferredTransport": "JSONRPC",
+  "additionalInterfaces": [
+    {
+      "url": "https://mcp.a2a-peptides.ai/mcp",
+      "transport": "streamable-http",
+      "protocolVersion": "2025-06-18",
+      "description": "MCP door — server a2a-peptides 1.6.5, 20 tools"
+    }
+  ],
   "supportedInterfaces": [
+    {
+      "url": "https://a2a-peptides.ai/a2a",
+      "protocolBinding": "JSONRPC",
+      "transport": "JSONRPC",
+      "protocolVersion": "0.3.0",
+      "preferred": true,
+      "description": "A2A endpoint — message/send, tasks/get; a DataPart {skill, params} runs the gate chain then the tool; text gets the skill list"
+    },
     {
       "url": "https://mcp.a2a-peptides.ai/mcp",
       "protocolBinding": "HTTP+JSON",
       "transport": "streamable-http",
       "protocolVersion": "2025-06-18",
-      "description": "MCP door — server a2a-peptides, twenty tools at v1.0"
+      "description": "MCP door — server a2a-peptides 1.6.5, 20 tools"
     },
     {
       "url": "https://a2a-peptides.ai/",
@@ -73,7 +99,7 @@
     {
       "id": "peptides.resolve_jurisdiction",
       "name": "resolve jurisdiction",
-      "description": "Resolve the ship-to and the actor's jurisdiction to one of US, CA, MX, EU (member as parameter) or GB.",
+      "description": "Resolve the ship-to and the actor's jurisdiction to one of US, CA, MX, EU (member as parameter), UK, KR, JP, SG or CH.",
       "tags": [
         "gate",
         "peptides"
@@ -369,12 +395,28 @@
       "outputModes": [
         "application/json"
       ]
+    },
+    {
+      "id": "peptides.list_agents",
+      "name": "list agents",
+      "description": "The agents of the family counted from the agent table at request time: thirty-five country agents, the registry, the payments door and the tenants' agents — hostname, role, jurisdiction preset, region, card and /a2a URL.",
+      "tags": [
+        "concierge",
+        "peptides"
+      ],
+      "inputModes": [
+        "application/json",
+        "text/plain"
+      ],
+      "outputModes": [
+        "application/json"
+      ]
     }
   ],
   "refusals": [
     {
       "reason_code": "DENY_RUO",
-      "description": "research-use stock is a reject class; no commerce tool touches it"
+      "description": "research-use stock is not listed and not sold; no commerce tool touches it"
     },
     {
       "reason_code": "DENY_UNLICENSED_AGENT",
@@ -402,10 +444,14 @@
     "CA",
     "MX",
     "EU",
-    "GB"
+    "GB",
+    "KR",
+    "JP",
+    "SG",
+    "CH"
   ],
   "registry": {
-    "namespace": "io.github.a2a-peptides",
+    "namespace": "io.github.A2A-Peptides",
     "server": "a2a-peptides"
   },
   "family": {
@@ -414,11 +460,16 @@
     "x402": "https://peptides-x402.ai",
     "tenant": "https://peptides-usa.ai"
   },
-  "asOf": "2026-09-17",
+  "agents": {
+    "list": "https://a2a-peptides.ai/agents.json",
+    "skill": "peptides.list_agents",
+    "counted": "from the agent table at request time"
+  },
+  "asOf": "2026-09-18",
   "signatures": [
     {
       "protected": "eyJhbGciOiJFUzI1NiIsImtpZCI6ImEyYXAtMjAyNi0wOSJ9",
-      "signature": "cKAEZlNuxMfMBEbcsjB-1MIksssbiomAe9YnAA9hbIsEp5FO97DSlZIMHv0sBH1DgqVTYjFTE-FkM5V6XkeyUg"
+      "signature": "VeFXlE3oCTzH5IIz1djKkNqL9rT9byYGg7gvNUmsOCDsIQtOpgxz2_DpaonAmpwBLHw3DhCqRBq_xDeHL34-8Q"
     }
   ]
 }

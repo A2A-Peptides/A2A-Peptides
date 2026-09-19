@@ -1,0 +1,445 @@
+{
+  "protocolVersion": "0.3.0",
+  "kind": "agent-card",
+  "name": "A2A Peptides — UK",
+  "description": "Agent-to-Agent (A2A) + Model Context Protocol (MCP) hub for peptides.",
+  "brief": "AI agents for authorized trading partners. Not marketing. Not advertising.",
+  "notice": "Artificial intelligence makes mistakes. A2A Peptides is an information source, not a recommendation. Rules differ by jurisdiction — refer to the regulator in your jurisdiction for the information that applies to you.",
+  "url": "https://uk.a2a-peptides.ai/a2a",
+  "preferredTransport": "JSONRPC",
+  "additionalInterfaces": [
+    {
+      "url": "https://mcp.a2a-peptides.ai/mcp",
+      "transport": "streamable-http",
+      "protocolVersion": "2025-06-18",
+      "description": "MCP door — server a2a-peptides 1.6.5, 20 tools"
+    }
+  ],
+  "supportedInterfaces": [
+    {
+      "url": "https://uk.a2a-peptides.ai/a2a",
+      "protocolBinding": "JSONRPC",
+      "transport": "JSONRPC",
+      "protocolVersion": "0.3.0",
+      "preferred": true,
+      "description": "A2A endpoint — message/send, tasks/get; DataPart {skill, params} runs the gate chain then the tool; text gets the skill list"
+    },
+    {
+      "url": "https://mcp.a2a-peptides.ai/mcp",
+      "protocolBinding": "HTTP+JSON",
+      "transport": "streamable-http",
+      "protocolVersion": "2025-06-18",
+      "description": "MCP door — server a2a-peptides 1.6.5, 20 tools"
+    }
+  ],
+  "version": "1.6.5",
+  "documentationUrl": "https://a2a-peptides.ai/docs",
+  "iconUrl": "https://a2a-peptides.ai/icon-512.png",
+  "provider": {
+    "organization": "GreenCore Solutions Corp.",
+    "url": "https://gsc-em.com"
+  },
+  "operator": {
+    "name": "GreenCore Solutions Corp.",
+    "url": "https://a2a-peptides.ai",
+    "contact": "mailto:mcp@a2a-peptides.ai",
+    "keyring": "https://a2a-peptides.ai/.well-known/jwks.json",
+    "kid": "a2ap-2026-09"
+  },
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false,
+    "stateTransitionHistory": false
+  },
+  "securitySchemes": {
+    "credential": {
+      "type": "http",
+      "scheme": "bearer",
+      "description": "client-credentials Bearer from https://peptides-registry.ai (register at /oauth/register); reads need no authentication; none returns DENY_UNLICENSED_AGENT on the transacting skills"
+    }
+  },
+  "security": [],
+  "defaultInputModes": [
+    "application/json",
+    "text/plain"
+  ],
+  "defaultOutputModes": [
+    "application/json"
+  ],
+  "skills": [
+    {
+      "id": "peptides.resolve_jurisdiction",
+      "name": "resolve jurisdiction",
+      "description": "Resolve a ship-to (e.g. 'US-CA', 'CA-ON', 'MX', 'EU-DE', 'UK', 'KR', 'JP', 'SG', 'CH') to the gate's jurisdiction (US · CA · MX · EU · UK · KR · JP · SG · CH; UK is the jurisdiction name; the ISO 3166-1 code is accepted as input, machine fields carry the ISO code and jurisdiction_label carries UK), the EU member and any state, provincial or cantonal overlay.",
+      "tags": [
+        "peptides",
+        "gate"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ],
+      "security": []
+    },
+    {
+      "id": "peptides.resolve_actor",
+      "name": "resolve actor",
+      "description": "Resolve the actor class and channel. Classes: authorized_trading_partner and its members (manufacturer · repackager · wholesale_distributor · dispenser · third_party_logistics_provider; cosmetic_responsible_person · nhp_licence_holder on the non-drug pathways), prescriber, the referral classes patient and public, and agent (inherits the class of the credential it presents; none returns DENY_UNLICENSED_AGENT). Returns communication_class: trade_information or public.",
+      "tags": [
+        "peptides",
+        "gate"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ],
+      "security": []
+    },
+    {
+      "id": "peptides.gate_transaction",
+      "name": "gate transaction",
+      "description": "The gate: allow, deny or require_rx for a substance (name, INN or unii:), a pathway (licensed_medicine · lawful_compounding · cosmetic · food_or_supplement · ruo_not_cleared), an actor class, a channel and a ship-to. Returns a frozen reason code, the rule-set version, the source page and a decision_id for the downstream tools.",
+      "tags": [
+        "peptides",
+        "gate"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ],
+      "security": []
+    },
+    {
+      "id": "peptides.get_substance_record",
+      "name": "get substance record",
+      "description": "One molecule: identifiers (INN, UNII, CAS, sequence hash), sourced aliases, class, one pathway row per jurisdiction × pathway, enforcement events, safety references. Every field carries its source page.",
+      "tags": [
+        "peptides",
+        "read"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ],
+      "security": []
+    },
+    {
+      "id": "peptides.get_pathway_status",
+      "name": "get pathway status",
+      "description": "The status of a substance on one pathway in one jurisdiction (frozen vocabulary), with effective date, rule-set version and source page.",
+      "tags": [
+        "peptides",
+        "read"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ],
+      "security": []
+    },
+    {
+      "id": "peptides.get_compounding_eligibility",
+      "name": "get compounding eligibility",
+      "description": "Whether a substance may be lawfully compounded in a jurisdiction and under which list or standard (503A/503B, provincial, magistral, Specials), from the register.",
+      "tags": [
+        "peptides",
+        "read"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ],
+      "security": []
+    },
+    {
+      "id": "peptides.get_label_and_indication",
+      "name": "get label and indication",
+      "description": "Label and indication pointers for a licensed presentation only (US package NDC, CA DIN, EU EMA number).",
+      "tags": [
+        "peptides",
+        "read"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ],
+      "security": []
+    },
+    {
+      "id": "peptides.get_enforcement_watch",
+      "name": "get enforcement watch",
+      "description": "Dated, URL'd enforcement events for a substance or jurisdiction: warning letters, import alerts, shortage-list changes, committee votes, proposed and final rules, seizures, state notices.",
+      "tags": [
+        "peptides",
+        "read"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ],
+      "security": []
+    },
+    {
+      "id": "peptides.search_cleared_items",
+      "name": "search cleared items",
+      "description": "Presentations that passed the gate for a jurisdiction, pathway and actor class (a query by substance, brand or holder; optional banner filter on the shelf of record). Only cleared statuses are returned; every item carries its availability block (banners, pos_count, product_urls).",
+      "tags": [
+        "peptides",
+        "read"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ],
+      "security": []
+    },
+    {
+      "id": "peptides.get_item",
+      "name": "get item",
+      "description": "One authorised presentation by id (US package NDC, CA DIN, EU EMA number, KR MFDS item seq, CH Swissmedic authorisation/pack code, JP approved-list entry, or the catalogue id): brand, strength, form, route, device, pack, holder, status, offers (tenant is a parameter).",
+      "tags": [
+        "peptides",
+        "read"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ],
+      "security": []
+    },
+    {
+      "id": "peptides.compare_presentations",
+      "name": "compare presentations",
+      "description": "Compare two or more authorised presentations side by side (ids as for get_item).",
+      "tags": [
+        "peptides",
+        "read"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ],
+      "security": []
+    },
+    {
+      "id": "peptides.find_licensed_supplier",
+      "name": "find licensed supplier",
+      "description": "Licensed parties for a presentation in a jurisdiction (tenant as a parameter). Takes the decision_id of an allow or require_rx decision from gate_transaction.",
+      "tags": [
+        "peptides",
+        "transacting"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ],
+      "security": [
+        {
+          "credential": []
+        }
+      ]
+    },
+    {
+      "id": "peptides.get_availability",
+      "name": "get availability",
+      "description": "Availability of a presentation once gate_transaction has answered allow or require_rx (decision_id): the availability block — banners[] on the shelf of record with licence footnote, pos_count (chain points of sale from the CPG Knowledge Graph retailer registry, or licensed dispensers on the provider directory for medicines), product_urls[] (retailer product page, register page, holder page) — plus tenant offers.",
+      "tags": [
+        "peptides",
+        "transacting"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ],
+      "security": [
+        {
+          "credential": []
+        }
+      ]
+    },
+    {
+      "id": "peptides.get_price",
+      "name": "get price",
+      "description": "Price basis (list · contract · reimbursement) from a licensed party, once gate_transaction has answered allow or require_rx (decision_id).",
+      "tags": [
+        "peptides",
+        "transacting"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ],
+      "security": [
+        {
+          "credential": []
+        }
+      ]
+    },
+    {
+      "id": "peptides.get_lot_coa",
+      "name": "get lot coa",
+      "description": "Certificate of analysis for a lawful lot of a presentation, where the pathway permits (decision_id required).",
+      "tags": [
+        "peptides",
+        "transacting"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ],
+      "security": [
+        {
+          "credential": []
+        }
+      ]
+    },
+    {
+      "id": "peptides.verify_serialization",
+      "name": "verify serialization",
+      "description": "Verify a serialised pack (GTIN + serial + lot + expiry) against the serialisation regime of the jurisdiction (DSCSA · FMD · UK · KR; none-national elsewhere).",
+      "tags": [
+        "peptides",
+        "read"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ],
+      "security": []
+    },
+    {
+      "id": "peptides.create_order_intent",
+      "name": "create order intent",
+      "description": "Create an order intent for a cleared item after the gate; the intent carries reason_code + rule_set_version and settles by x402 on peptides-x402.ai.",
+      "tags": [
+        "peptides",
+        "transacting"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ],
+      "security": [
+        {
+          "credential": []
+        }
+      ]
+    },
+    {
+      "id": "peptides.a2a_handoff",
+      "name": "a2a handoff",
+      "description": "Hand off over Agent-to-Agent (A2A). With an allow/require_rx decision: the order intent goes to the licensed counterparty's agent (envelope + card URL). With a deny for a patient, the public or an unauthorized actor: returns real licensed destinations from the provider directory (dispensers, prescribers) filtered by the decision's jurisdiction, state/province and practice scope — a referral, never a vial.",
+      "tags": [
+        "peptides",
+        "transacting"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ],
+      "security": [
+        {
+          "credential": []
+        }
+      ]
+    },
+    {
+      "id": "peptides.get_safety_label",
+      "name": "get safety label",
+      "description": "Safety label pointers for licensed products (label page and the pharmacovigilance scheme of the jurisdiction).",
+      "tags": [
+        "peptides",
+        "read"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ],
+      "security": []
+    },
+    {
+      "id": "peptides.log_audit",
+      "name": "log audit",
+      "description": "Write the audit line for a gate decision or an order intent (returns the line id).",
+      "tags": [
+        "peptides",
+        "read"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ],
+      "security": []
+    }
+  ],
+  "role": "country",
+  "tenant": "hub",
+  "region": "South Central US",
+  "registry": {
+    "issuer": "https://peptides-registry.ai",
+    "client_id": "a2ap_bc9724aa6356d01dfc7b24ca"
+  },
+  "hub": "https://a2a-peptides.ai",
+  "asOf": "2026-09-19T01:50:18Z",
+  "jurisdiction": {
+    "preset": "GB",
+    "label": "UK",
+    "member": null,
+    "overlay": null,
+    "ship_to": "UK",
+    "rule_set": {
+      "version": "v1.2-2026-09-17",
+      "rules_in_force": 34
+    },
+    "regulator": {
+      "name": "MHRA (UK)",
+      "root": "https://www.gov.uk/government/organisations/medicines-and-healthcare-products-regulatory-agency"
+    }
+  },
+  "signatures": [
+    {
+      "protected": "eyJhbGciOiJFUzI1NiIsImtpZCI6ImEyYXAtMjAyNi0wOSJ9",
+      "signature": "7zczlSvjy1Tb4d9xUbuLUpkMA8HSueBp42VVC70XGeGYqAXr5RN_HurSp3_5cqctx-NNhUB2qwBGL6YR7So2tQ"
+    }
+  ]
+}
