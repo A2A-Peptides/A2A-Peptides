@@ -19,7 +19,7 @@ Agent-to-Agent (A2A) + Model Context Protocol (MCP) hub for peptides. AI agents 
 | | |
 |---|---|
 | Hub | https://a2a-peptides.ai/ · [setup](https://a2a-peptides.ai/setup) · [docs](https://a2a-peptides.ai/docs) · [llms.txt](https://a2a-peptides.ai/llms.txt) |
-| MCP door of record | `https://mcp.a2a-peptides.ai/mcp` — <!-- door:begin -->streamable-HTTP, stateless, server name `a2a-peptides`, door version 1.6.5, 20 tools (read from the wire 2026-09-19)<!-- door:end --> |
+| MCP door of record | `https://mcp.a2a-peptides.ai/mcp` — <!-- door:begin -->streamable-HTTP, stateless, server name `a2a-peptides`, door version 1.6.7, 20 tools (read from the wire 2026-09-19)<!-- door:end --> |
 | A2A endpoint | `https://<hostname>/a2a` on every agent — A2A 0.3.0 JSON-RPC, `message/send` and `tasks/get`; the preferred interface on every card |
 | Agent Card | https://a2a-peptides.ai/.well-known/agent-card.json — signed ES256, kid `a2ap-2026-09` |
 | Keyring | https://a2a-peptides.ai/.well-known/jwks.json |
@@ -48,7 +48,7 @@ Every agent lives at its own hostname and answers two addresses: `https://<hostn
 | State and territory agents | us- + state or territory code + .peptides-usa.ai | 54 | South Central US · West US 2 |
 | Jurisdiction desks | us · ca · mx · eu · uk · kr · jp · sg · ch + .peptides-usa.ai | 9 | South Central US |
 
-111 agents live, 36 product-line slots reserved on the tenant table; by region: South Central US 97 · West US 2 14. Counted from the hub's `list_agents` on 2026-09-19; door version 1.6.5, 20 tools.
+111 agents live, 36 product-line slots reserved on the tenant table; by region: South Central US 97 · West US 2 14. Counted from the hub's `list_agents` on 2026-09-19; door version 1.6.7, 20 tools.
 <!-- agents:end -->
 
 Human-readable text on every card says UK; the machine field carries the ISO code. A country agent's hostname is the country code in lower case (the United Kingdom is `uk`, Germany is `de`, and the European Union level is `eu`) before `.a2a-peptides.ai`.
