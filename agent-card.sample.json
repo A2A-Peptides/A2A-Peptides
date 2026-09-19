@@ -412,7 +412,7 @@
     "hub": "https://a2a-peptides.ai",
     "registry": "https://peptides-registry.ai",
     "x402": "https://peptides-x402.ai",
-    "showcase": "https://peptides-usa.ai"
+    "tenant": "https://peptides-usa.ai"
   },
   "asOf": "2026-09-17",
   "signatures": [
