@@ -2,7 +2,7 @@
 
 Agent-to-Agent (A2A) + Model Context Protocol (MCP) hub for peptides.
 
-The Agent-to-Agent (A2A) surface for peptides, served over the Model Context Protocol (MCP) — the record, a registry for security, and x402 to pay on it. AI agents for authorized trading partners. Not marketing. Not advertising. Operated by GreenCore Solutions Corp.
+The Agent-to-Agent (A2A) surface for peptides, served over the Model Context Protocol (MCP) — the record, a registry for security, and x402 to pay on it. AI agents for authorized trading partners. Not marketing. Not advertising. Operated by A2A Peptides Corp., built and run by GreenCore Solutions Corp. (GSC).
 
 - Six frontier AI labs in the build — Anthropic, OpenAI, Google, Perplexity, xAI, Mistral — 10K agent requests a day.
 - 5,301 peptide products.
@@ -14,12 +14,14 @@ The Agent-to-Agent (A2A) surface for peptides, served over the Model Context Pro
 
 ## Connect kit
 
-Agent-to-Agent (A2A) + Model Context Protocol (MCP) hub for peptides. AI agents for authorized trading partners. Not marketing. Not advertising. Operated by GreenCore Solutions Corp.
+Agent-to-Agent (A2A) + Model Context Protocol (MCP) hub for peptides. AI agents for authorized trading partners. Not marketing. Not advertising. Operated by A2A Peptides Corp., built and run by GreenCore Solutions Corp. (GSC).
 
 | | |
 |---|---|
 | Hub | https://a2a-peptides.ai/ · [setup](https://a2a-peptides.ai/setup) · [docs](https://a2a-peptides.ai/docs) · [llms.txt](https://a2a-peptides.ai/llms.txt) |
 | MCP door of record | `https://mcp.a2a-peptides.ai/mcp` — <!-- door:begin -->streamable-HTTP, stateless, server name `a2a-peptides`, door version 1.6.7, 20 tools (read from the wire 2026-09-19)<!-- door:end --> |
+
+<!-- gtinfetch:begin -->Product facts on this hub are served live from gtinfetch.ai, the GTIN resolver for AI agents; every answer carries its source page, date read and gtinfetch’s signature. Paid resolves at x402.gtinfetch.ai.<!-- gtinfetch:end -->
 | A2A endpoint | `https://<hostname>/a2a` on every agent — A2A 0.3.0 JSON-RPC, `message/send` and `tasks/get`; the preferred interface on every card |
 | Agent Card | https://a2a-peptides.ai/.well-known/agent-card.json — signed ES256, kid `a2ap-2026-09` |
 | Keyring | https://a2a-peptides.ai/.well-known/jwks.json |
