@@ -2,7 +2,7 @@
 
 Agent-to-Agent (A2A) + Model Context Protocol (MCP) hub for peptides.
 
-The Agent-to-Agent (A2A) surface for peptides, served over the Model Context Protocol (MCP) — the record, a registry for security, and x402 to pay on it. AI agents for authorized trading partners. Not marketing. Not advertising. Operated by A2A Peptides Corp., built and run by GreenCore Solutions Corp. (GSC).
+The Agent-to-Agent (A2A) surface for peptides, served over the Model Context Protocol (MCP) — the record, a registry for security, and x402 to pay on it. AI agents for authorized trading partners. Not marketing. Not advertising. Operated by A2A Peptides Corp., built and run by wefetch.
 
 - Six frontier AI labs in the build — Anthropic, OpenAI, Google, Perplexity, xAI, Mistral — 10K agent requests a day.
 - 5,301 peptide products.
@@ -14,7 +14,7 @@ The Agent-to-Agent (A2A) surface for peptides, served over the Model Context Pro
 
 ## Connect kit
 
-Agent-to-Agent (A2A) + Model Context Protocol (MCP) hub for peptides. AI agents for authorized trading partners. Not marketing. Not advertising. Operated by A2A Peptides Corp., built and run by GreenCore Solutions Corp. (GSC).
+Agent-to-Agent (A2A) + Model Context Protocol (MCP) hub for peptides. AI agents for authorized trading partners. Not marketing. Not advertising. Operated by A2A Peptides Corp., built and run by wefetch.
 
 | | |
 |---|---|

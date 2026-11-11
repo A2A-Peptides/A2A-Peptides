@@ -12,7 +12,7 @@
       "url": "https://mcp.a2a-peptides.ai/mcp",
       "transport": "streamable-http",
       "protocolVersion": "2025-06-18",
-      "description": "MCP door — server a2a-peptides 1.6.5, 20 tools"
+      "description": "MCP door — server a2a-peptides 1.6.7, 20 tools"
     }
   ],
   "supportedInterfaces": [
@@ -29,15 +29,15 @@
       "protocolBinding": "HTTP+JSON",
       "transport": "streamable-http",
       "protocolVersion": "2025-06-18",
-      "description": "MCP door — server a2a-peptides 1.6.5, 20 tools"
+      "description": "MCP door — server a2a-peptides 1.6.7, 20 tools"
     }
   ],
-  "version": "1.6.5",
+  "version": "1.6.7",
   "documentationUrl": "https://a2a-peptides.ai/docs",
   "iconUrl": "https://a2a-peptides.ai/icon-512.png",
   "provider": {
-    "organization": "GreenCore Solutions Corp.",
-    "url": "https://gsc-em.com"
+    "organization": "wefetch",
+    "url": "https://wefetch.ai/"
   },
   "operator": {
     "name": "A2A Peptides Corp.",
@@ -420,7 +420,7 @@
     "client_id": "a2ap_bc9724aa6356d01dfc7b24ca"
   },
   "hub": "https://a2a-peptides.ai",
-  "asOf": "2026-09-19T01:50:18Z",
+  "asOf": "2026-09-19T19:34:28Z",
   "jurisdiction": {
     "preset": "GB",
     "label": "UK",
@@ -439,7 +439,7 @@
   "signatures": [
     {
       "protected": "eyJhbGciOiJFUzI1NiIsImtpZCI6ImEyYXAtMjAyNi0wOSJ9",
-      "signature": "7zczlSvjy1Tb4d9xUbuLUpkMA8HSueBp42VVC70XGeGYqAXr5RN_HurSp3_5cqctx-NNhUB2qwBGL6YR7So2tQ"
+      "signature": "AbswLh0c14rtv17FXP-2cIjfXzKYpzywrCGuMDJBkbSBnQ8KE-KkOEblocIkWOCYi1ZUNIgRwgpOgl6jgYbnLQ"
     }
   ]
 }
